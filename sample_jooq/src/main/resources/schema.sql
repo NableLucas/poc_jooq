@@ -1,0 +1,6 @@
+DROP TABLE if exists;
+
+CREATE TABLE PESSOA (
+	ID int(11) NOT NULL
+	;
+)

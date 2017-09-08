@@ -3,6 +3,7 @@ package br.com.lnable.repository;
 import java.util.List;
 
 import org.jooq.DSLContext;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import br.com.lnable.model.Terminal;
@@ -10,14 +11,14 @@ import br.com.lnable.model.Terminal;
 @Repository
 public class JOOQTerminalRepository implements TerminalRepository {
 
+	@Autowired
 	private final DSLContext jooq;
 	
 	public JOOQTerminalRepository(DSLContext jooq) {
-		this.jooq = jooq;
+		this.jooq = jooq.select().
 	}
 
-	public Terminal add(Terminal terminalEntry) {
-		// TODO Auto-generated method stub
+	public Terminal add(Terminal terminalEntry) {		
 		return null;
 	}
 
