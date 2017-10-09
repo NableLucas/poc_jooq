@@ -2,6 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
+
 	<groupId>br.com.lnable</groupId>
 	<artifactId>sample_jooq</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
@@ -12,6 +13,9 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>1.8</java.version>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
 
 	<parent>
@@ -40,7 +44,7 @@
 						</goals>
 						<configuration>
 							<sources>
-								<source>src/main/java</source>
+								<source>gensrc/main/java</source>
 							</sources>
 						</configuration>
 					</execution>
@@ -55,68 +59,26 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-jooq -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jooq</artifactId>
+			    <version>1.5.7.RELEASE</version>
+			
 		</dependency>
+		
 		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-		</dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+		
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
 	</dependencies>
-
-
-
-
 	<profiles>
-		<profile>
-			<id>h2</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.jooq</groupId>
-						<artifactId>jooq-codegen-maven</artifactId>
-						<executions>
-							<execution>
-								<goals>
-									<goal>generate</goal>
-								</goals>
-							</execution>
-						</executions>
-						<dependencies>
-							<dependency>
-								<groupId>com.h2database</groupId>
-								<artifactId>h2</artifactId>
-								<version>${h2.version}</version>
-							</dependency>
-						</dependencies>
-						<configuration>
-							<jdbc>
-								<driver>org.h2.Driver</driver>
-								<url>jdbc:h2:~/springbootjooq</url>
-							</jdbc>
-							<generator>
-								<name>org.jooq.util.DefaultGenerator</name>
-								<database>
-									<name>org.jooq.util.h2.H2Database</name>
-									<includes>.*</includes>
-									<excludes />
-									<inputSchema>PUBLIC</inputSchema>
-								</database>
-								<target>
-									<packageName>br.com.lnable.model</packageName>
-									<directory>src/main/java</directory>
-								</target>
-							</generator>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
 		<profile>
 			<id>mysql</id>
 			<build>
@@ -154,8 +116,8 @@
 									<inputSchema>poc-jooq</inputSchema>
 								</database>
 								<target>
-									<packageName>br.com.lnable.domain</packageName>
-									<directory>src/main/java</directory>
+									<packageName>br.com.lnable.jooq.domain</packageName>
+									<directory>gensrc/main/java</directory>
 								</target>
 							</generator>
 						</configuration>
