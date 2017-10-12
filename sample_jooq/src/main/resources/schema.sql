@@ -1,4 +1,5 @@
-DROP TABLE if exists Usuario;
+DROP TABLE if exists Pessoa;
+
 CREATE TABLE `poc-jooq`.`Pessoa` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NOT NULL,

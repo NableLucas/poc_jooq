@@ -1,1 +1,1 @@
-insert into Usuario(id, nome, email, telefone, dt-criacao) values(1, 'Lucas Nable', 'lucas@gmail.com', '22222222' , '2016-01-03');
+insert into Pessoa(id, nome, email, telefone, dt_criacao) values(1, 'Lucas Nable', 'lucas@gmail.com', '22222222' , '2016-01-03');
