@@ -31,7 +31,7 @@ public class PessoaService {
 				.returning(PESSOA.ID)
 				.fetchOne();
 		
-		pessoaRecord.setId(pessoaRecord.getId());
+		pessoa.setId(pessoaRecord.getId().longValue());
 		return pessoa;
 	}
 	
@@ -42,6 +42,11 @@ public class PessoaService {
 			pessoas.add(getPessoaEntity(record));
 		}
 		return pessoas;
+	}
+	
+	public Pessoa getPessoa(Long id) {
+		Record result = dsl.select().from(PESSOA).where(PESSOA.ID.eq(id.intValue())).fetchOne();
+		return getPessoaEntity(result);
 	}
 
 	private Pessoa getPessoaEntity(Record record) {
