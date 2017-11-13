@@ -15,6 +15,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import br.com.lnable.App;
 import br.com.lnable.model.Pessoa;
+import ch.qos.logback.core.net.SyslogOutputStream;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = App.class)
@@ -31,11 +32,20 @@ public class PessoaServiceTest {
 	}
 	
 	@Test
+	@Order(2)
 	public void createPessoa() {
 		Pessoa pessoa = newPessoa();
 		Pessoa pessoaCreated = p.createPessoa(pessoa);
 		Pessoa pessoaFinded = p.getPessoa(pessoaCreated.getId());
-		assertEquals(pessoaCreated.getId(), pessoaFinded.getId());
+		assertEquals(pessoaCreated.getId(), pessoaFinded.getId());	
+	}
+	
+	@Test
+	@Order(3)
+	public void getAll() {
+		List<Pessoa> pessoas = p.getAllPessoas();
+		pessoas.stream()
+			.forEach(pe -> System.out.println(pe.getNome()));
 		
 	}
 	
